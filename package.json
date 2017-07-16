@@ -4,6 +4,10 @@
   "description": "Console wrapper",
   "license": "MIT",
   "author": "cowcoders <info@cowcoders.com>",
+  "repository": {
+    "url": "https://github.com/cowcoders/console-log-helper",
+    "type": "git"
+  },
   "files": [
     "dist"
   ],
