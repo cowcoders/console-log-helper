@@ -4,25 +4,26 @@
   "description": "Console wrapper",
   "license": "MIT",
   "author": "cowcoders <info@cowcoders.com>",
-  "repository": {
-    "url": "https://github.com/cowcoders/console-log-helper",
-    "type": "git"
-  },
   "files": [
     "dist"
   ],
   "main": "dist/console-log-helper.umd.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cowcoders/console-log-helper"
+  },
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "tsc && rollup -c && rimraf compiled && typedoc --out dist/docs --target es6 --theme minimal src",
-    "deploy-docs": "ts-node tools/gh-pages-publish",
+    "deploy-docs": "build && gh-pages -d dist/docs",
     "lint": "tslint -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
     "start": "tsc-watch --onSuccess \"rollup -c\"",
     "test": "jest",
-    "test:prod": "npm run lint && npm run test -- --coverage --no-cache"
+    "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
+    "postpublish": "npm run deploy-docs"
   },
   "dependencies": {
     "@types/node": "^7.0.8",
@@ -34,6 +35,7 @@
     "colors": "^1.1.2",
     "coveralls": "^2.13.1",
     "cross-env": "^5.0.1",
+    "gh-pages": "^1.0.0",
     "jest": "^20.0.4",
     "lint-staged": "^4.0.0",
     "lodash.camelcase": "^4.3.0",
