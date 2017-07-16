@@ -15,7 +15,7 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "tsc && rollup -c && rimraf compiled && typedoc --out dist/docs --target es6 --theme minimal src",
-    "deploy-docs": "build && gh-pages -d dist/docs",
+    "deploy-docs": "gh-pages -d dist/docs",
     "lint": "tslint -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
